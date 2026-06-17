@@ -566,6 +566,7 @@ header {
 section {
   padding: 100px 0;
   position: relative;
+  scroll-margin-top: 90px;
 }
 
 .section-head {
@@ -609,6 +610,7 @@ section {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+  align-items: stretch;
 }
 
 .pillar-card {
@@ -616,11 +618,21 @@ section {
   border-radius: 16px;
   padding: 44px 36px;
   position: relative;
-  transition: transform 0.2s ease, background 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 
 .pillar-card:hover {
   transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(42,30,24,0.1);
+}
+
+.pillar-card:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
 }
 
 .pillar-card.pillar-red {
@@ -671,6 +683,26 @@ section {
   font-size: 15px;
   color: var(--gray);
   position: relative;
+  flex-grow: 1;
+}
+
+.pillar-card .arrow {
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--red);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap 0.2s ease;
+}
+
+.pillar-card.pillar-red .arrow {
+  color: #fff;
+}
+
+.pillar-card:hover .arrow {
+  gap: 10px;
 }
 
 /* ---------- SERVICE LIST ---------- */
