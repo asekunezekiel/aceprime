@@ -29,6 +29,13 @@ body {
   overflow-x: hidden;
 }
 
+p {
+  text-align: justify;
+  text-align-last: left;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
 h1, h2, h3 {
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
