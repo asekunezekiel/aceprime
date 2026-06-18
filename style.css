@@ -758,24 +758,35 @@ section {
 }
 
 .service-row {
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  padding: 30px 0;
   border-bottom: 1px solid rgba(250,246,241,0.12);
-  transition: padding-left 0.25s ease;
-  position: relative;
 }
 
 .section-light .service-row {
   border-bottom: 1px solid var(--line);
 }
 
-.service-row:hover {
+.service-row-trigger {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+  padding: 30px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  transition: padding-left 0.25s ease;
+  position: relative;
+}
+
+.service-row-trigger:hover,
+.service-row-trigger:focus-visible {
   padding-left: 16px;
 }
 
-.service-row:hover::before {
+.service-row-trigger:hover::before,
+.service-row-trigger:focus-visible::before {
   content: "";
   position: absolute;
   left: 0;
@@ -783,6 +794,11 @@ section {
   bottom: 0;
   width: 3px;
   background: var(--red);
+}
+
+.service-row-trigger:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: -2px;
 }
 
 .service-row .num {
@@ -799,10 +815,34 @@ section {
   width: 240px;
   flex-shrink: 0;
   color: var(--cream);
+  margin: 0;
 }
 
 .section-light .service-row h3 {
   color: var(--ink);
+}
+
+.service-row-chevron {
+  margin-left: auto;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: var(--red);
+  transition: transform 0.3s ease;
+}
+
+.service-row-trigger[aria-expanded="true"] .service-row-chevron {
+  transform: rotate(180deg);
+}
+
+.service-row-panel {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s ease;
+}
+
+.service-row-panel-inner {
+  padding: 0 0 30px 72px;
 }
 
 .service-row p {
@@ -816,7 +856,7 @@ section {
 }
 
 .service-row .row-extra {
-  margin-top: 10px;
+  margin-top: 14px;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -1926,10 +1966,9 @@ footer {
   .about-grid { grid-template-columns: 1fr; gap: 32px; }
   .hero-grid { grid-template-columns: 1fr; }
   .dash-window { max-width: 480px; }
-  .service-row { flex-direction: column; align-items: flex-start; gap: 8px; }
-  .service-row h3 { width: auto; }
-  .service-row:hover { padding-left: 0; }
-  .service-row:hover::before { display: none; }
+  .service-row-trigger { gap: 16px; }
+  .service-row h3 { width: auto; font-size: 19px; }
+  .service-row-panel-inner { padding-left: 32px; }
   .section-head h2 { font-size: 28px; }
   .cta-final { padding: 56px 28px; }
   .pillar-card .num, .process-step .step-num { display: none; }
