@@ -85,3 +85,42 @@ function closeMenu() {
   var mobileMenu = document.getElementById('mobileMenu');
   if (mobileMenu) mobileMenu.classList.remove('open');
 }
+
+function toggleServiceRow(trigger) {
+  var panelId = trigger.getAttribute('aria-controls');
+  var panel = document.getElementById(panelId);
+  if (!panel) return;
+
+  var isOpen = trigger.getAttribute('aria-expanded') === 'true';
+
+  if (isOpen) {
+    // Closing: lock current height, then animate to 0
+    panel.style.height = panel.scrollHeight + 'px';
+    requestAnimationFrame(function () {
+      panel.style.height = '0px';
+    });
+    trigger.setAttribute('aria-expanded', 'false');
+  } else {
+    // Opening: start at 0 (in case it was 'auto'), then animate to full height
+    panel.style.height = '0px';
+    var targetHeight = panel.scrollHeight;
+    requestAnimationFrame(function () {
+      panel.style.height = targetHeight + 'px';
+    });
+    trigger.setAttribute('aria-expanded', 'true');
+    panel.addEventListener('transitionend', function handler() {
+      if (trigger.getAttribute('aria-expanded') === 'true') {
+        panel.style.height = 'auto';
+      }
+      panel.removeEventListener('transitionend', handler);
+    });
+  }
+}
+
+// Recalculate open panel heights on resize so wrapped text doesn't get clipped
+window.addEventListener('resize', function () {
+  document.querySelectorAll('.service-row-trigger[aria-expanded="true"]').forEach(function (trigger) {
+    var panel = document.getElementById(trigger.getAttribute('aria-controls'));
+    if (panel) panel.style.height = 'auto';
+  });
+});
