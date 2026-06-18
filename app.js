@@ -154,7 +154,7 @@ window.addEventListener('resize', function () {
   var freelancerPriceEl = document.getElementById('calcFreelancerPrice');
   var acePrimePriceEl = document.getElementById('calcAcePrimePrice');
 
-  var BASE = 1500;
+  var BASE = 2000;
   var INCLUDED_PAGES = 6;
   var EXTRA_PAGE_PRICE = 100;
   var RUSH_PCT = 0.20;
