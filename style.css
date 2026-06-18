@@ -1154,6 +1154,21 @@ section {
   width: 100%;
 }
 
+.price-guarantee {
+  font-size: 13px;
+  color: var(--gray);
+  background: rgba(42,30,24,0.05);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.price-card.featured .price-guarantee {
+  background: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.85);
+}
+
 .price-card.featured .btn-primary {
   background: var(--ink);
   color: #fff;
