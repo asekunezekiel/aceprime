@@ -121,49 +121,98 @@
   </div>
 </section>
 
-<section class="section-dark">
+<section class="section-dark" id="calculator-section">
   <div class="wrap">
     <div class="section-head">
-      <span class="tag">Add-ons</span>
-      <h2>Need just one piece? These can be added to any plan, or bought on their own.</h2>
+      <span class="tag">Try it yourself</span>
+      <h2>See what your project would cost.</h2>
+      <p class="calc-intro">Adjust the pages and add-ons below. The price updates as you go, and it's the same math we use on a real quote.</p>
     </div>
-    <div class="addon-grid">
-      <div class="addon-card">
-        <h3>Extra page</h3>
-        <div class="price">$100</div>
-        <p>Additional pages beyond your plan's included page count, designed to match your site.</p>
+
+    <div class="calc-grid">
+      <div class="calc-form">
+        <div class="calc-section">
+          <h3>How many pages do you need?</h3>
+          <div class="calc-slider-row">
+            <input type="range" id="calcPages" class="calc-slider" min="1" max="20" step="1" value="6" aria-describedby="calcPagesValue">
+            <div class="calc-slider-value" id="calcPagesValue">6 pages</div>
+          </div>
+          <div class="calc-slider-labels"><span>1</span><span>20</span></div>
+          <p class="calc-note">Foundation includes up to 6 pages. Extra pages are $100 each.</p>
+        </div>
+
+        <div class="calc-section">
+          <h3>Add anything on top?</h3>
+          <label class="calc-checkbox">
+            <input type="checkbox" id="calcAiChat">
+            <span class="calc-checkbox-box" aria-hidden="true"></span>
+            <span class="calc-checkbox-text">AI chat agent for instant lead replies</span>
+            <span class="calc-checkbox-price">+$500</span>
+          </label>
+          <label class="calc-checkbox">
+            <input type="checkbox" id="calcEmailSequence">
+            <span class="calc-checkbox-box" aria-hidden="true"></span>
+            <span class="calc-checkbox-text">Email sequence (welcome, nurture, or win-back)</span>
+            <span class="calc-checkbox-price">+$350</span>
+          </label>
+          <label class="calc-checkbox">
+            <input type="checkbox" id="calcExtraAutomation">
+            <span class="calc-checkbox-box" aria-hidden="true"></span>
+            <span class="calc-checkbox-text">Extra automation workflow</span>
+            <span class="calc-checkbox-price">+$400</span>
+          </label>
+          <label class="calc-checkbox">
+            <input type="checkbox" id="calcBrandRefresh">
+            <span class="calc-checkbox-box" aria-hidden="true"></span>
+            <span class="calc-checkbox-text">Brand refresh (logo, colors, type)</span>
+            <span class="calc-checkbox-price">+$600</span>
+          </label>
+        </div>
+
+        <div class="calc-section">
+          <h3>How fast do you need it?</h3>
+          <label class="calc-radio">
+            <input type="radio" name="calcTimeline" id="calcRegular" checked>
+            <span class="calc-radio-circle" aria-hidden="true"></span>
+            <span class="calc-radio-text">Regular speed</span>
+            <span class="calc-radio-price">Included</span>
+          </label>
+          <label class="calc-radio">
+            <input type="radio" name="calcTimeline" id="calcRush">
+            <span class="calc-radio-circle" aria-hidden="true"></span>
+            <span class="calc-radio-text">Rush delivery</span>
+            <span class="calc-radio-price">+20%</span>
+          </label>
+        </div>
       </div>
-      <div class="addon-card">
-        <h3>AI chat agent</h3>
-        <div class="price">$500</div>
-        <p>A trained AI agent for your site that answers common questions and qualifies leads instantly.</p>
-      </div>
-      <div class="addon-card">
-        <h3>Email sequence</h3>
-        <div class="price">$350</div>
-        <p>A written and scheduled email sequence, welcome series, nurture, or win-back, ready to send.</p>
-      </div>
-      <div class="addon-card">
-        <h3>Extra automation workflow</h3>
-        <div class="price">$400</div>
-        <p>One additional automated workflow connecting two or more of your existing tools.</p>
-      </div>
-      <div class="addon-card">
-        <h3>Brand refresh</h3>
-        <div class="price">$600</div>
-        <p>Updated logo, color palette, and typography to give your business a more current look.</p>
-      </div>
-      <div class="addon-card">
-        <h3>Monthly ad management</h3>
-        <div class="price">$750</div>
-        <p>Ongoing Google or Meta ad campaign management, including monthly reporting and optimization.</p>
-      </div>
-      <div class="addon-card">
-        <h3>Site &amp; system maintenance</h3>
-        <div class="price">$600<span style="font-size:14px; font-weight:400; color:var(--gray);">/mo</span></div>
-        <p>For Foundation clients not ready for Growth. Hosting and uptime monitoring, CRM monitoring, and small content or workflow updates each month.</p>
+
+      <div class="calc-results">
+        <h3>Estimated cost</h3>
+        <p class="calc-results-sub">Based on real market rates for comparable projects.</p>
+
+        <div class="calc-compare-card">
+          <div class="calc-compare-label">Typical agency charges from</div>
+          <div class="calc-compare-price" id="calcAgencyPrice">$6,000</div>
+          <div class="calc-compare-note">Plus extra time and add-on costs later</div>
+        </div>
+
+        <div class="calc-compare-card">
+          <div class="calc-compare-label">A freelancer charges from</div>
+          <div class="calc-compare-price" id="calcFreelancerPrice">$3,000</div>
+          <div class="calc-compare-note">Plus the back-and-forth of managing it yourself</div>
+        </div>
+
+        <div class="calc-compare-card calc-compare-featured">
+          <div class="calc-compare-label">With Ace Prime</div>
+          <div class="calc-compare-price" id="calcAcePrimePrice">$1,500</div>
+          <div class="calc-compare-note">One system, one team, no surprises</div>
+        </div>
+
+        <a href="https://calendly.com/aceprime-ceo/new-meeting" target="_blank" rel="noopener" class="btn btn-primary calc-cta">Book your free audit</a>
       </div>
     </div>
+
+    <p class="calc-footnote">Need ongoing support after launch? Monthly ad management starts at $750/mo, and site &amp; system maintenance starts at $600/mo. Both can be added once your project is live.</p>
   </div>
 </section>
 
