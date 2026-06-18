@@ -130,6 +130,19 @@ window.addEventListener('resize', function () {
   var pagesInput = document.getElementById('calcPages');
   if (!pagesInput) return; // calculator not on this page
 
+  // Interactive background glow follows the cursor within the section
+  var calcSection = document.getElementById('calculator-section');
+  var glow = document.getElementById('calcGlow');
+  if (calcSection && glow && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    calcSection.addEventListener('mousemove', function (e) {
+      var rect = calcSection.getBoundingClientRect();
+      var xPct = ((e.clientX - rect.left) / rect.width) * 100;
+      var yPct = ((e.clientY - rect.top) / rect.height) * 100;
+      glow.style.left = xPct + '%';
+      glow.style.top = yPct + '%';
+    });
+  }
+
   var pagesValueEl = document.getElementById('calcPagesValue');
   var aiChatEl = document.getElementById('calcAiChat');
   var emailSequenceEl = document.getElementById('calcEmailSequence');
