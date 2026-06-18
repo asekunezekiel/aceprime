@@ -2003,10 +2003,63 @@ footer {
 }
 
 /* ---------- PRICING CALCULATOR ---------- */
+.calc-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.calc-grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(250,246,241,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(250,246,241,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 40%, transparent 100%);
+  animation: calcGridDrift 18s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes calcGridDrift {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: 40px 40px, 40px 40px; }
+}
+
+.calc-glow {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--red) 0%, transparent 70%);
+  opacity: 0.16;
+  filter: blur(60px);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: left 0.6s ease, top 0.6s ease;
+  animation: calcGlowPulse 6s ease-in-out infinite;
+}
+
+@keyframes calcGlowPulse {
+  0%, 100% { opacity: 0.12; }
+  50% { opacity: 0.22; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .calc-grid-pattern { animation: none; }
+  .calc-glow { animation: none; transition: none; }
+}
+
+.calc-bg .wrap {
+  position: relative;
+  z-index: 1;
+}
+
 .calc-intro {
   max-width: 560px;
   margin: 16px auto 0;
-  text-align: center;
   color: #C9B8AE;
   font-size: 15px;
 }
@@ -2275,8 +2328,8 @@ footer {
 .calc-footnote {
   text-align: center;
   max-width: 640px;
-  margin: 32px auto 0;
-  font-size: 13px;
+  margin: 40px auto 0;
+  font-size: 14px;
   color: #C9B8AE;
 }
 
