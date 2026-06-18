@@ -124,3 +124,64 @@ window.addEventListener('resize', function () {
     if (panel) panel.style.height = 'auto';
   });
 });
+
+// ---------- PRICING CALCULATOR ----------
+(function () {
+  var pagesInput = document.getElementById('calcPages');
+  if (!pagesInput) return; // calculator not on this page
+
+  var pagesValueEl = document.getElementById('calcPagesValue');
+  var aiChatEl = document.getElementById('calcAiChat');
+  var emailSequenceEl = document.getElementById('calcEmailSequence');
+  var extraAutomationEl = document.getElementById('calcExtraAutomation');
+  var brandRefreshEl = document.getElementById('calcBrandRefresh');
+  var rushEl = document.getElementById('calcRush');
+
+  var agencyPriceEl = document.getElementById('calcAgencyPrice');
+  var freelancerPriceEl = document.getElementById('calcFreelancerPrice');
+  var acePrimePriceEl = document.getElementById('calcAcePrimePrice');
+
+  var BASE = 1500;
+  var INCLUDED_PAGES = 6;
+  var EXTRA_PAGE_PRICE = 100;
+  var RUSH_PCT = 0.20;
+
+  var AGENCY_BASE = 6000;
+  var AGENCY_PER_PAGE = 350;
+  var FREELANCER_BASE = 3000;
+  var FREELANCER_PER_PAGE = 200;
+
+  function formatPrice(n) {
+    return '$' + Math.round(n).toLocaleString();
+  }
+
+  function calculate() {
+    var pages = parseInt(pagesInput.value, 10);
+    pagesValueEl.textContent = pages + (pages === 1 ? ' page' : ' pages');
+
+    var total = BASE;
+    var extraPages = Math.max(0, pages - INCLUDED_PAGES);
+    total += extraPages * EXTRA_PAGE_PRICE;
+
+    if (aiChatEl.checked) total += 500;
+    if (emailSequenceEl.checked) total += 350;
+    if (extraAutomationEl.checked) total += 400;
+    if (brandRefreshEl.checked) total += 600;
+
+    if (rushEl.checked) total *= (1 + RUSH_PCT);
+
+    var agencyTotal = AGENCY_BASE + extraPages * AGENCY_PER_PAGE;
+    var freelancerTotal = FREELANCER_BASE + extraPages * FREELANCER_PER_PAGE;
+
+    acePrimePriceEl.textContent = formatPrice(total);
+    agencyPriceEl.textContent = formatPrice(agencyTotal);
+    freelancerPriceEl.textContent = formatPrice(freelancerTotal);
+  }
+
+  [pagesInput, aiChatEl, emailSequenceEl, extraAutomationEl, brandRefreshEl, rushEl].forEach(function (el) {
+    el.addEventListener('input', calculate);
+  });
+  document.getElementById('calcRegular').addEventListener('input', calculate);
+
+  calculate();
+})();
